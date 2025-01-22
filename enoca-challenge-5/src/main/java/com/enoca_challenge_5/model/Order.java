@@ -11,4 +11,7 @@ public class Order extends BaseEntity{
     @ManyToOne
     private Cart cart;
 
+    
+
+
 }
