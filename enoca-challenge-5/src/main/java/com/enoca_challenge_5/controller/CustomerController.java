@@ -25,7 +25,6 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<CreateCustomerResponse> createCustomer(@Valid @RequestBody CreateCustomerRequest createCustomerRequest){
-        //log.debug("REST create customer", createCustomerRequest);
         return ResponseEntity.ok(customerService.createCustomer(createCustomerRequest));
     }
 

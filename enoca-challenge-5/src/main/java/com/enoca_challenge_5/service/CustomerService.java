@@ -6,7 +6,6 @@ import com.enoca_challenge_5.dto.response.CreateCustomerResponse;
 import com.enoca_challenge_5.repository.CustomerRepository;
 import com.enoca_challenge_5.rules.CustomerRules;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service

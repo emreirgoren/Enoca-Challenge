@@ -2,8 +2,9 @@ package com.enoca_challenge_5.converter;
 
 import com.enoca_challenge_5.dto.request.CreateCustomerRequest;
 import com.enoca_challenge_5.dto.response.CreateCustomerResponse;
+import com.enoca_challenge_5.exceptions.BadRequestException;
+import com.enoca_challenge_5.exceptions.ExceptionMessageConstants;
 import com.enoca_challenge_5.model.Customer;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,7 +14,7 @@ public class CustomerConverter {
     public Customer toCustomer(CreateCustomerRequest createCustomerRequest) {
 
         if(createCustomerRequest == null){
-            throw new IllegalArgumentException("createCustomerRequest.not.null");
+            throw new BadRequestException(ExceptionMessageConstants.CUSTOMER_REQUEST_NULL);
         }
 
         Customer customer = new Customer();
@@ -30,7 +31,7 @@ public class CustomerConverter {
     public CreateCustomerResponse toCreateCustomerResponse(Customer customer) {
 
         if(customer == null){
-            throw new IllegalArgumentException("customer.not.null");
+            throw new BadRequestException(ExceptionMessageConstants.CUSTOMER_NULL);
         }
 
         CreateCustomerResponse createCustomerResponse = new CreateCustomerResponse();
