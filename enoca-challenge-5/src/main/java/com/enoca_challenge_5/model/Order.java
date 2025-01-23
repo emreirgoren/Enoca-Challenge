@@ -20,7 +20,7 @@ public class Order extends BaseEntity{
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    @Column(name = "order_price",precision = 20,scale = 4)
+    @Column(name = "order_price",precision = 20,scale = 2)
     private BigDecimal orderPrice;
 
 }

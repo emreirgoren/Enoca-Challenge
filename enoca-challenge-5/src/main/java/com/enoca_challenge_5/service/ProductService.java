@@ -1,6 +1,7 @@
 package com.enoca_challenge_5.service;
 
 import com.enoca_challenge_5.converter.ProductConverter;
+import com.enoca_challenge_5.dto.request.CreateProductRequest;
 import com.enoca_challenge_5.dto.response.ProductResponse;
 import com.enoca_challenge_5.exceptions.BadRequestException;
 import com.enoca_challenge_5.exceptions.ExceptionMessageConstants;
@@ -27,4 +28,10 @@ public class ProductService {
         return productConverter.toProductResponse(product);
     }
 
+    public ProductResponse createProduct(CreateProductRequest createProductRequest) {
+        productRules.checkProductIsExistByName(createProductRequest.getProductName());
+        var newProduct = productConverter.toProduct(createProductRequest);
+        productRepository.save(newProduct);
+        return productConverter.toProductResponse(newProduct);
+    }
 }

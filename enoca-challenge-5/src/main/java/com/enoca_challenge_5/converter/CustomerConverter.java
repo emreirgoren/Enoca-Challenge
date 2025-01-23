@@ -14,7 +14,7 @@ public class CustomerConverter {
     public Customer toCustomer(CreateCustomerRequest createCustomerRequest) {
 
         if(createCustomerRequest == null){
-            throw new BadRequestException(ExceptionMessageConstants.CUSTOMER_REQUEST_NULL);
+            throw new BadRequestException(ExceptionMessageConstants.REQUEST_NULL);
         }
 
         Customer customer = new Customer();

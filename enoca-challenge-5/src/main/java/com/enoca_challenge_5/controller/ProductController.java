@@ -1,11 +1,11 @@
 package com.enoca_challenge_5.controller;
 
+import com.enoca_challenge_5.dto.request.CreateProductRequest;
 import com.enoca_challenge_5.dto.response.ProductResponse;
 import com.enoca_challenge_5.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/product")
@@ -17,9 +17,14 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ProductResponse> getProduct(Long productId){
+    @GetMapping("/{productId}")
+    public ResponseEntity<ProductResponse> getProduct(@PathVariable Long productId){
         return ResponseEntity.ok(productService.getProduct(productId));
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<ProductResponse> createProduct(@Valid @RequestBody CreateProductRequest createProductRequest){
+        return ResponseEntity.ok(productService.createProduct(createProductRequest));
     }
 
 }
