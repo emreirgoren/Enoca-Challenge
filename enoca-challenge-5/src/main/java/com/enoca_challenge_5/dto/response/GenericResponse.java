@@ -16,6 +16,14 @@ public class GenericResponse{
     private String message;
     private HttpStatus httpStatus;
 
+    public static GenericResponse success(String message){
+        return GenericResponse.builder()
+                .httpStatus(HttpStatus.ACCEPTED)
+                .status(GenericResponseConstants.SUCCESS)
+                .message(message)
+                .build();
+    }
+
     public static GenericResponse failed(String message){
         return GenericResponse.builder()
                 .httpStatus(HttpStatus.BAD_REQUEST)
