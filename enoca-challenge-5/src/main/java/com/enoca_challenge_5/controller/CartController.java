@@ -1,5 +1,6 @@
 package com.enoca_challenge_5.controller;
 
+import com.enoca_challenge_5.dto.request.CartRequest;
 import com.enoca_challenge_5.dto.response.CartResponse;
 import com.enoca_challenge_5.service.CartService;
 import org.springframework.http.ResponseEntity;
@@ -25,4 +26,8 @@ public class CartController {
         return ResponseEntity.ok(cartService.emptyCart(customerId));
     }
 
+    @PostMapping("/add/{customerId}")
+    public ResponseEntity<CartResponse> addProduct(@PathVariable Long customerId,@RequestBody CartRequest cartRequest){
+        return ResponseEntity.ok(cartService.addProduct(customerId,cartRequest));
+    }
 }

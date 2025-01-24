@@ -1,5 +1,6 @@
 package com.enoca_challenge_5.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -30,6 +31,7 @@ public class Customer extends BaseEntity {
     @Column(name = "address")
     private String address;
 
+    @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cart_id")
     private Cart cart = new Cart();

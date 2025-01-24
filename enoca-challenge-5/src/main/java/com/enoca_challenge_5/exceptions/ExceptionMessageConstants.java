@@ -12,4 +12,5 @@ public class ExceptionMessageConstants {
     public static final String PRODUCT_ALREADY_EXIST = "product.already.exist";
 
     public static final String CART_NOT_FOUND = "cart.not.fond";
+    public static final String NOT_ENOUGH_STOCK = "not.enough.stock";
 }

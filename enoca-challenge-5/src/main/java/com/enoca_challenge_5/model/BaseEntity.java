@@ -1,5 +1,6 @@
 package com.enoca_challenge_5.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,10 +22,12 @@ public abstract class BaseEntity {
     @JsonIgnore
     private Long id;
 
+    @JsonIgnore
     @CreatedDate
     @Column(name = "created_date",updatable = false)
     private LocalDateTime createdDate;
 
+    @JsonIgnore
     @LastModifiedDate
     @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
