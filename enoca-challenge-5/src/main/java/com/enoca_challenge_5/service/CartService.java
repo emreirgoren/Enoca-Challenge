@@ -103,6 +103,50 @@ public class CartService {
                 .reduce(BigDecimal.ZERO,BigDecimal::add);
     }
 
+    public CartResponse removeProductFromCart(Long customerId, CartRequest cartRequest) {
+
+        customerRules.checkCustomerExistById(customerId);
+
+        Product product = productRules.checkProductIsExist(cartRequest.getProductId());
+        Cart cart = cartRepository.findByCustomerId(customerId);
+
+        Optional<Item> optionalItem = cart.getItemList().stream()
+                .filter(item ->
+                        item.getProduct().getId().equals(product.getId()) &&
+                                item.getCart().getId().equals(cart.getId())
+                ).findFirst();
+
+        if(optionalItem.isPresent()){
+
+            Item item = optionalItem.get();
+
+            if(cartRequest.isRemoveAll() || cartRequest.getQuantity() == item.getQuantity()){
+                cart.getItemList().remove(item);
+                cart.setTotalPrice(calculateCartPrice(cart));
+                itemRepository.delete(item);
+                cartRepository.save(cart);
+            }else{
+
+                if(cartRequest.getQuantity() > item.getQuantity()){
+                    throw new BadRequestException("request quantity cannot be more than stock");
+                }
+
+
+                item.setQuantity(item.getQuantity() - cartRequest.getQuantity());
+                item.setPrice(calculateItemPrice(item.getQuantity(), product.getPrice()));
+                itemRepository.save(item);
+
+            }
+        }else{
+            throw new BadRequestException(ExceptionMessageConstants.ITEM_NOT_FOUND);
+        }
+
+        cart.setTotalPrice(calculateCartPrice(cart));
+
+        return cartConverter.toCartResponse(cart);
+
+    }
+
     /**
      * Update cart
      */

@@ -3,6 +3,7 @@ package com.enoca_challenge_5.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 @Table(name = "items")
 @Getter
 @Setter
+@EqualsAndHashCode
 public class Item extends BaseEntity {
 
     @JsonIgnore

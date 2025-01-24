@@ -13,4 +13,5 @@ public class ExceptionMessageConstants {
 
     public static final String CART_NOT_FOUND = "cart.not.fond";
     public static final String NOT_ENOUGH_STOCK = "not.enough.stock";
+    public static final String ITEM_NOT_FOUND = "item.not.found";
 }
