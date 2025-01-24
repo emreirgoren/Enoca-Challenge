@@ -20,6 +20,6 @@ public class Cart extends BaseEntity {
     private List<Item> itemList;
 
     @Column(name = "total_price",precision = 20, scale = 2)
-    private BigDecimal totalPrice;
+    private BigDecimal totalPrice = BigDecimal.ZERO;
 
 }

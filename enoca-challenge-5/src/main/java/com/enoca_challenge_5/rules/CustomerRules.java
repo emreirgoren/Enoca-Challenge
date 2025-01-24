@@ -15,10 +15,14 @@ public class CustomerRules {
     }
 
     public void checkCustomerExist(String email) {
-
         if(customerRepository.existsByEmail(email)){
             throw new BadRequestException(ExceptionMessageConstants.CUSTOMER_EXIST+ " Email: " + email);
         }
+    }
 
+    public void checkCustomerExistById(Long customerId) {
+        if(!customerRepository.existsById(customerId)){
+            throw new BadRequestException(ExceptionMessageConstants.CUSTOMER_NOT_FOUND);
+        }
     }
 }
