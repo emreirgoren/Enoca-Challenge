@@ -9,6 +9,8 @@ import com.enoca_challenge_5.rules.CartRules;
 import com.enoca_challenge_5.rules.CustomerRules;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class CartService {
 
@@ -30,4 +32,16 @@ public class CartService {
     }
 
 
+    public CartResponse emptyCart(Long customerId) {
+        customerRules.checkCustomerExistById(customerId);
+        Cart cart = cartRepository.findByCustomerId(customerId);
+
+        cart.getItemList().clear();
+        cart.setTotalPrice(BigDecimal.ZERO);
+        return cartConverter.toCartResponse(cart);
+    }
+
+    /**
+     * Update cart
+     */
 }
