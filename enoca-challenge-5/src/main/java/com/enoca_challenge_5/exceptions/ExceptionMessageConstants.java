@@ -16,4 +16,5 @@ public class ExceptionMessageConstants {
     public static final String ITEM_NOT_FOUND = "item.not.found";
     public static final String CART_NULL = "cart.null";
     public static final String ORDER_NULL = "order.null";
+    public static final String ORDER_NOT_FOUND = "order.not.found";
 }

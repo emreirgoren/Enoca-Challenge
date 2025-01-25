@@ -10,10 +10,13 @@ import com.enoca_challenge_5.model.Order;
 import com.enoca_challenge_5.repository.CustomerRepository;
 import com.enoca_challenge_5.repository.OrderRepository;
 import com.enoca_challenge_5.rules.CustomerRules;
+import com.enoca_challenge_5.rules.OrderRules;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -22,12 +25,14 @@ public class OrderService {
     private final CustomerRepository customerRepository;
     private final OrderRepository orderRepository;
     private final OrderConverter orderConverter;
+    private final OrderRules orderRules;
 
-    public OrderService(CustomerRules customerRules, CustomerRepository customerRepository, OrderRepository orderRepository, OrderConverter orderConverter) {
+    public OrderService(CustomerRules customerRules, CustomerRepository customerRepository, OrderRepository orderRepository, OrderConverter orderConverter, OrderRules orderRules) {
         this.customerRules = customerRules;
         this.customerRepository = customerRepository;
         this.orderRepository = orderRepository;
         this.orderConverter = orderConverter;
+        this.orderRules = orderRules;
     }
 
     @Transactional
@@ -54,6 +59,24 @@ public class OrderService {
         return orderConverter.toOrderResponse(newOrder);
 
     }
+
+    public OrderResponse getOrderForCode(String orderCode) {
+        orderRules.checkOrderIsExist(orderCode);
+        return orderConverter.toOrderResponse(orderRepository.findByOrderCode(orderCode));
+    }
+
+    public List<OrderResponse> getAllOrdersForCustomer(Long customerId) {
+
+        customerRules.checkCustomerExistById(customerId);
+
+        List<Order> orderList = orderRepository.findAllByCustomerId(customerId);
+
+        return orderList.stream()
+                .map(order -> orderConverter.toOrderResponse(order))
+                .collect(Collectors.toList());
+
+    }
+
 
     private String createUniqOrderCOde(Long customerId){
         long time = System.currentTimeMillis();
