@@ -16,11 +16,12 @@ public class Order extends BaseEntity{
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "cart_id")
+    @Transient
     private Cart cart;
 
     @Column(name = "order_price",precision = 20,scale = 2)
     private BigDecimal orderPrice;
+
+    private String orderCode;
 
 }
