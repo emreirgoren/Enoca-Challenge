@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "6bf8b381-9453-4105-9a7b-442731924703",
+		"name": "Enoca",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27483915"
+	},
+	"item": [
+		{
+			"name": "CustomerApi",
+			"item": [
+				{
+					"name": "CreateCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\":\"Emre\",\r\n    \"lastName\":\"Irgoren\",\r\n    \"email\":\"emre3@java.com\",\r\n    \"address\":\"Java\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:9090/api/customer"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductApi",
+			"item": [
+				{
+					"name": "CreateProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productName\":\"product1\",\r\n    \"description\":\"description1\",\r\n    \"stock\":10,\r\n    \"price\":100.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:9090/api/product/create"
+					},
+					"response": []
+				},
+				{
+					"name": "GetProduct",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9090/api/product/1"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\":\"descriptionupdate\",\r\n    \"stock\":100,\r\n    \"price\":1000.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:9090/api/product/update/8"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:9090/api/product/delete/8"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CartApi",
+			"item": [
+				{
+					"name": "GetCart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9090/api/cart/12"
+					},
+					"response": []
+				},
+				{
+					"name": "AddProductToCart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\":11,\r\n    \"quantity\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:9090/api/cart/add/12"
+					},
+					"response": []
+				},
+				{
+					"name": "EmptyCart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:9090/api/cart/12"
+					},
+					"response": []
+				},
+				{
+					"name": "RemoveProoductToCart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\":11,\r\n    \"quantity\":2,\r\n    \"removeAll\":true\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:9090/api/cart/remove/12"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OrderApi",
+			"item": [
+				{
+					"name": "PlaceOrder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9090/api/order/12"
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrderForCode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9090/api/order/ordercode/12-1737802813876"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllOrderForCustomer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9090/api/order/getAllOrdersForCustomer/12"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
